@@ -3,8 +3,8 @@ const root=path.resolve(__dirname,'..');
 test('web app exposes complete public test and free result flow',()=>{
  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
- ['start-screen','quiz-screen','result-screen','timer','progress-bar','category-results','review-list'].forEach(id=>assert.match(html,new RegExp(`id=["']${id}["']`)));
- assert.match(html,/ผลฟรีทันที/); assert.match(html,/คำตอบไม่ถูกส่งออก/);
+ ['start-screen','quiz-screen','result-screen','timer','progress-bar','category-results','review-list','tester-name','result-tester-name','consent-send','send-status'].forEach(id=>assert.match(html,new RegExp(`id=["']${id}["']`)));
+ assert.match(html,/ไม่มี Paywall/); assert.match(html,/คำตอบไม่ถูกส่งออก/); assert.match(html,/hr\.easypaythai@gmail\.com/);
  assert.match(app,/scoreAnswers/); assert.match(app,/localStorage/); assert.match(app,/finishQuiz/); assert.match(app,/renderReview/);
  const css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
  assert.match(css,/repeat\(3,minmax\(0,1fr\)\)/);
