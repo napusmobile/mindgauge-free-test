@@ -3,9 +3,10 @@ const root=path.resolve(__dirname,'..');
 test('web app exposes complete public test and free result flow',()=>{
  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
- ['start-screen','quiz-screen','result-screen','timer','progress-bar','category-results','review-list','tester-name','result-tester-name','consent-send','send-status'].forEach(id=>assert.match(html,new RegExp(`id=["']${id}["']`)));
- assert.match(html,/ไม่มี Paywall/); assert.match(html,/คำตอบไม่ถูกส่งออก/); assert.match(html,/hr\.easypaythai@gmail\.com/);
- assert.match(app,/scoreAnswers/); assert.match(app,/localStorage/); assert.match(app,/finishQuiz/); assert.match(app,/renderReview/);
+ ['start-screen','quiz-screen','result-screen','timer','progress-bar','category-results','review-list','tester-name','result-tester-name','consent-send','send-status','question-navigator','skip-btn','answered-count','assessment-promise'].forEach(id=>assert.match(html,new RegExp(`id=["']${id}["']`)));
+ assert.match(html,/ไม่มี Paywall/); assert.match(html,/คำตอบรายข้อไม่ถูกส่ง/); assert.match(html,/hr\.easypaythai@gmail\.com/);
+ assert.match(html,/ข้อสอบต้นฉบับของ MindGauge/); assert.match(html,/ข้ามข้อและกลับมาตอบ/); assert.doesNotMatch(html,/MindOrbit/i);
+ assert.match(app,/scoreAnswers/); assert.match(app,/localStorage/); assert.match(app,/finishQuiz/); assert.match(app,/renderReview/); assert.match(app,/renderNavigator/); assert.match(app,/firstUnanswered/);
  const css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
  assert.match(css,/repeat\(3,minmax\(0,1fr\)\)/);
  assert.match(css,/@media\(max-width:650px\)[\s\S]*\.shell\{width:calc\(100% - 24px\)\}/);
