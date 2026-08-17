@@ -20,14 +20,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260817-3">
+  <link rel="stylesheet" href="styles.css?v=20260817-4">
 </head>
 <body>
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <main class="shell">
     <header class="site-header">
       <a class="brand" href="./" aria-label="MindGauge หน้าแรก"><span class="brand-mark">M</span><span><strong>MindGauge</strong><small>Original Reasoning Assessment</small></span></a>
-      <div class="privacy-pill">✓ คำตอบรายข้อไม่ถูกส่ง</div>
+      <div class="header-actions"><div class="co-brand"><span>โดย</span><img id="easypay-logo" src="assets/easypay-thai-logo.webp" alt="EasyPay Thai" width="720" height="535"></div><div class="privacy-pill">✓ คำตอบรายข้อไม่ถูกส่ง</div></div>
     </header>
 
     <section id="start-screen" class="launch-screen">
@@ -40,7 +40,7 @@
           <div class="feature-grid">
             <article><b>20</b><span>คำถามต้นฉบับ</span></article>
             <article><b>5</b><span>ทักษะสำคัญ</span></article>
-            <article><b>15</b><span>นาที</span></article>
+            <article><b>00:00</b><span>จับเวลาการทำจริง</span></article>
           </div>
           <ul id="assessment-promise" class="promise-list">
             <li><span>✓</span> ข้ามข้อและกลับมาตอบได้</li>
@@ -60,7 +60,7 @@
           <label class="consent-row"><input id="consent-send" type="checkbox"><span>ยินยอมให้ส่งชื่อและผลคะแนนสรุปไปยัง <b>hr.easypaythai@gmail.com</b></span></label>
           <button id="start-btn" class="primary full" disabled>เริ่มทำแบบประเมิน <span>→</span></button>
           <p id="start-error" class="form-help" aria-live="polite"></p>
-          <div class="data-note"><span>▣</span><p><b>ข้อมูลที่ส่ง:</b> ชื่อ คะแนนรวม ระดับผล คะแนน 5 หมวด เวลา และรหัสรายการเท่านั้น</p></div>
+          <div class="data-note"><span>▣</span><p><b>ข้อมูลที่ส่ง:</b> ชื่อ คะแนนรวม คะแนน 5 หมวด เวลาที่ใช้ ดัชนีประสิทธิภาพ และรหัสรายการเท่านั้น</p></div>
         </section>
       </div>
       <div class="notice"><b>หมายเหตุสำคัญ</b><span id="disclaimer-text"></span></div>
@@ -69,7 +69,7 @@
     <section id="quiz-screen" class="quiz-screen hidden">
       <header class="quiz-header">
         <div><span id="category-label" class="eyebrow"></span><h2 id="question-count">ข้อ 1 จาก 20</h2></div>
-        <div class="quiz-metrics"><span id="answered-count">ตอบแล้ว 0/20</span><div id="timer" class="timer" aria-live="polite">15:00</div></div>
+        <div class="quiz-metrics"><span id="answered-count">ตอบแล้ว 0/20</span><div class="timer-box"><small>เวลาที่ใช้</small><div id="timer" class="timer" aria-live="polite">00:00</div></div></div>
       </header>
       <div class="progress-track" aria-label="ความคืบหน้า"><div id="progress-bar"></div></div>
       <div class="quiz-workspace">
@@ -94,6 +94,11 @@
 
     <section id="result-screen" class="result-screen hidden">
       <div class="result-head"><div class="score-ring"><span id="score-percent">0</span><small>/ 100</small></div><div><div class="eyebrow">ผลการประเมินของคุณ</div><p id="result-tester-name" class="tester-name-result"></p><h2 id="result-level"></h2><p id="result-copy"></p></div></div>
+      <section class="performance-summary" aria-labelledby="performance-heading">
+        <div class="performance-main"><div class="eyebrow">ศักยภาพในการทำแบบประเมิน</div><h2 id="performance-heading"><span id="performance-index">0</span><small>/100</small></h2><strong id="performance-level">—</strong></div>
+        <div class="performance-metrics"><article><span>เวลาที่ใช้</span><b id="result-duration">00:00</b></article><article><span>ประสิทธิภาพด้านเวลา</span><b id="time-efficiency">0/100</b></article><article><span>เวลาเฉลี่ยต่อข้อ</span><b id="average-per-question">0 วินาที</b></article></div>
+        <p class="performance-explainer">ดัชนีประสิทธิภาพคำนวณจากคะแนนการให้เหตุผล 90% และประสิทธิภาพด้านเวลา 10% โดยเวลาไม่เกิน 15 นาทีได้คะแนนเวลาเต็ม การทำเร็วกว่านั้นไม่เพิ่มโบนัสเกินเพดาน</p>
+      </section>
       <div id="send-status" class="send-status" aria-live="polite"><span id="send-status-text">กำลังส่งผลให้ฝ่าย HR…</span><button id="retry-send-btn" class="secondary hidden" type="button">ลองส่งอีกครั้ง</button></div>
       <div id="category-results" class="category-results"></div>
       <div class="result-actions"><button id="review-btn" class="primary">ดูเฉลยและคำอธิบาย</button><button id="restart-btn" class="secondary">ทำใหม่อีกครั้ง</button></div>
@@ -103,6 +108,6 @@
 
     <footer>MindGauge © 2026 • Original assessment • ไม่มี Paywall</footer>
   </main>
-  <script src="quiz.js?v=20260817-3"></script><script src="config.js?v=20260817-3"></script><script src="app.js?v=20260817-3"></script>
+  <script src="quiz.js?v=20260817-4"></script><script src="performance.js?v=20260817-4"></script><script src="config.js?v=20260817-4"></script><script src="app.js?v=20260817-4"></script>
 </body>
 </html>
